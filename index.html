@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000 url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Estrellas animadas */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(214, 238, 81, 0.5);
+            width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            border: 1px solid #fcd601;
+        }
+
+        .login-container h1 {
+            color: #f7f7f7;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .password-input {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .password-input input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #eebc51;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .password-input input:focus {
+            box-shadow: 0 0 10px rgba(81, 203, 238, 0.8);
+        }
+
+        .password-input label {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #aaa;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .password-input input:focus + label,
+        .password-input input:not(:placeholder-shown) + label {
+            top: -20px;
+            left: 5px;
+            font-size: 12px;
+            color: #fffb00;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0 5px;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #eb3017, #ffa32a);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(45deg, #ff552a, #eee351);
+            box-shadow: 0 0 15px rgba(238, 81, 81, 0.8);
+        }
+
+        .error-message {
+            color: #f50635;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="login-container">
+        <h1>Acceso a la sorpresa </h1>
+        <form id="loginForm">
+            <div class="password-input">
+                <input type="text" id="password" placeholder=" " required>
+                <label for="password">Contraseña</label>
+            </div>
+            <button type="submit" class="login-btn">Ingresar</button>
+            <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
+        </form>
+    </div>
+
+    <script>
+        // Crear estrellas animadas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Tamaño aleatorio entre 1 y 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posición aleatoria
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Duración de animación aleatoria
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                
+                // Retraso de animación aleatorio
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Manejar el formulario de login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Aquí puedes verificar la contraseña
+            // Este es solo un ejemplo, en una aplicación real deberías usar autenticación segura
+            if (password === "Mi saturno") {
+                // Contraseña correcta, redirigir o mostrar contenido
+                alert("¡Acceso concedido!");
+                window.location.href = "dashboard.html";
+            } else {
+                // Contraseña incorrecta
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+        
+        // Inicializar las estrellas cuando se carga la página
+        window.onload = createStars;
+    </script>
+</body>
+</html>

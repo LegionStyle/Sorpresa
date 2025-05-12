@@ -1,0 +1,196 @@
+body {
+    font-family:  Arial, Helvetica ;
+    background: #000000;
+}
+
+.menu {
+    list-style: none; 
+    padding: 0;
+    background: black;
+    width: 90%; 
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #f7cb3a;
+    margin: 0 auto 30px;
+
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    display: block;
+    font-size: 16px;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center; 
+    padding: 10px;
+}
+
+.menu li a:hover{
+    background: #fffffe;
+    color: #000000;
+    border-radius: 10px;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-container h1 {
+    text-align: center;
+    color: #ffd102;
+    margin-bottom: 30px;
+}
+
+.blog-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.blog-table td {
+    padding: 15px;
+    vertical-align: top;
+}
+
+.blog-item {
+    background: rgb(8, 8, 8);
+    border: 1px solid #f1bb08;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+    transition: transform 0.3s;
+}
+
+.blog-item:hover {
+    transform: translateY(-5px);
+}
+
+.blog-item h3 {
+    color: #ffd000;
+    margin-top: 0;
+}
+.blog-item p {
+    color: #f7f3f3;
+}
+
+.blog-button {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+    background: #f7bf0a;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.blog-button:hover {
+    background: #e6b800;
+}
+
+/* Estilos del modal (mejorados) */
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.822);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s;
+    z-index: 1000;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: 600px;
+    max-width: 90%;
+    max-height: 90vh;
+    background: #070707;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgb(247, 202, 3);
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #ff9900;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #faf7f7;
+}
+
+.modal-content h2 {
+    color: #f0b20a;
+    margin-top: 0;
+    padding-right: 30px; /* Espacio para el botón de cerrar */
+}
+
+.modal-content p {
+    line-height: 1.6;
+    color: #f7f3f3;
+}
+
+
+
+
+
+
+/* Estilos para las estrellas */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50000px; /* Forma circular perfecta */
+    animation: twinkle var(--duration, 3s) infinite ease-in-out;
+    opacity: 0;
+}
+
+/* Animación de parpadeo */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Esto las coloca detrás de todo */
+}
+
+

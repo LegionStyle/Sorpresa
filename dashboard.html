@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Verdades</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px 0;
+            font-family: 'Arial', sans-serif;
+            background: #070707;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .welcome-box {
+            text-align: center;
+            padding: 50px;
+            margin: 0 auto 60px;
+            width: 90%;
+            max-width: 800px;
+            
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 30px rgba(255, 42, 109, 0.4); }
+            100% { box-shadow: 0 0 50px rgba(255, 42, 109, 0.7); }
+        }
+
+        h1 {
+            color: #f5f3f3;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .truths-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .truth-box {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            border: 1px solid #f8f405;
+            box-shadow: 0 0 15px rgba(255, 145, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(3px);
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .truth-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+        }
+
+        .truth-box h2 {
+            color: #dda60f;
+            margin: 0 0 15px 0;
+            font-size: 1.8rem;
+        }
+
+        .truth-content {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .truth-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #fcfcfc;
+            color: rgb(3, 0, 0);
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .logout-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 12px;
+            background: linear-gradient(45deg, #e41414, #d37000);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(45deg, #f11304, #f37024);
+            box-shadow: 0 0 20px rgba(248, 1, 1, 0.6);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-message {
+                font-size: 1.2rem;
+            }
+            
+            .truths-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .truth-box {
+                padding: 25px;
+            }
+        }
+
+        /* Estrellas animadas */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50000px;
+            animation: twinkle var(--duration, 3s) infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        body {
+    font-family:  Arial, Helvetica ;
+}
+
+.menu {
+    list-style: none; 
+    padding: 0;
+    background:  rgba(0, 0, 0, 0.7);
+    width: 90%; 
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #f7cb3a;
+    margin: 0 auto 30px;
+
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    display: block;
+    font-size: 16px;
+}
+
+.menu li{
+    display: inline-block;
+    text-align: center; 
+    padding: 10px;
+}
+
+.menu li a:hover{
+    background: #fffffe;
+    color: #000000;
+    border-radius: 10px;
+}
+    /* Estilos para la imagen de fondo */
+.hero-container {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .hero-content h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="verdad.html">Verdades</a></li>
+        <li><a href="escritos.html">Escritos</a></li>
+        <li><a href="sentir.html">Sentir</a></li>
+        <li><a href="dashboard.html">Portal</a></li>    
+    </ul>
+    
+    <div class="stars" id="stars"></div>
+    <div class="hero-container">
+        <!-- Imagen de fondo insertada directamente en HTML -->
+        <img src="imagenes/upscalemedia-transformed.jpeg"  width="100px" height="100px" alt="Cafetería" class="hero-image">
+        
+        <!-- Contenido superpuesto -->
+        <div class="hero-content">
+            <div class="welcome-box">
+                <h1>¡LO LOGRASTE!</h1>
+                <p class="welcome-message">
+                    Ahora podrás ver la verdad que hay detrás.<br>
+                    Y quiero disculparme por ocultartelo...
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="truths-container">
+        <div class="truth-box">
+            <div class="truth-number">1</div>
+            <h2>La historia</h2>
+            <div class="truth-content">
+                ¿Cómo comenzó todo? Cómo me fui enamorando de tí ❤️
+            </div>
+            <a href="historia.html" class="logout-btn">Ingresa aquí</a>
+        </div>
+
+        <div class="truth-box">
+            <div class="truth-number">2</div>
+            <h2>Las verdades</h2>
+            <div class="truth-content">
+                No siempre todo fue verdad y admito que te mentí y aquí te diré cuáles son las verdades ❤️
+            </div>
+            <a href="verdad.html" class="logout-btn">Ingresa aquí</a>
+        </div>
+
+        <div class="truth-box">
+            <div class="truth-number">3</div>
+            <h2>Mis escritos</h2>
+            <div class="truth-content">
+                ¿Recuerdas mis poemas? Pues eran para ti ❤️
+            </div>
+            <a href="escritos.html" class="logout-btn">Ingresa aquí</a>
+        </div>
+
+        <div class="truth-box">
+            <div class="truth-number">4</div>
+            <h2>Mi sentir</h2>
+            <div class="truth-content">
+                Cómo me sentí durante este tiempo pequeño junto a tí ❤️
+            </div>
+            <a href="sentir.html" class="logout-btn">Ingresa aquí</a>
+        </div>
+    </div>
+
+    <a href="index.html" class="logout-btn">Salir del Portal</a>
+
+    <script>
+        // Crear estrellas animadas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+                star.style.animationDelay = `${Math.random() * 8}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Efecto de aparición escalonada para las cajas de verdad
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            const truthBoxes = document.querySelectorAll('.truth-box');
+            truthBoxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.style.opacity = '1';
+                    box.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        });
+    </script>
+</body>
+</html>

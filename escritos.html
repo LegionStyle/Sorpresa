@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styleescrito.css">
+
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="verdad.html">Verdades</a></li>
+        <li><a href="escritos.html">Escritos</a></li>
+        <li><a href="sentir.html">Sentir</a></li>
+        <li><a href="dashboard.html">Portal</a></li>    
+    </ul>
+    
+    <div class="blog-container">
+        <h1>Mi Poemas para tí</h1>
+        <table class="blog-table">
+            <tr>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 1</h3>
+                        <p>Resumen del primer artículo interesante...</p>
+                        <a href="#modal1" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 2</h3>
+                        <p>Resumen del segundo artículo fascinante...</p>
+                        <a href="#modal2" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 3</h3>
+                        <p>Resumen del tercer artículo impresionante...</p>
+                        <a href="#modal3" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 4</h3>
+                        <p>Resumen del cuarto artículo educativo...</p>
+                        <a href="#modal4" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 5</h3>
+                        <p>Resumen del quinto artículo innovador...</p>
+                        <a href="#modal5" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="blog-item">
+                        <h3>Artículo 6</h3>
+                        <p>Resumen del sexto artículo revelador...</p>
+                        <a href="#modal6" class="blog-button">Leer más</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Modales para cada artículo -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 1 - Detalles</h2>
+            <p>Contenido completo del primer artículo...</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 2 - Detalles</h2>
+            <p>Contenido completo del segundo artículo...</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 1 - Detalles</h2>
+            <p>Contenido completo del primer artículo...</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 2 - Detalles</h2>
+            <p>Contenido completo del segundo artículo...</p>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 1 - Detalles</h2>
+            <p>Contenido completo del primer artículo...</p>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <a href="#" class="modal-close">&times;</a>
+            <h2>Artículo 2 - Detalles</h2>
+            <p>Contenido completo del segundo artículo...</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+<script>
+
+    // Crear estrellas animadas
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        const starCount = 200;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+            star.style.animationDelay = `${Math.random() * 8}s`;
+            
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // Efecto de aparición escalonada para las cajas de verdad
+    document.addEventListener('DOMContentLoaded', () => {
+        createStars();
+        
+        const truthBoxes = document.querySelectorAll('.truth-box');
+        truthBoxes.forEach((box, index) => {
+            setTimeout(() => {
+                box.style.opacity = '1';
+                box.style.transform = 'translateY(0)';
+            }, 200 * index);
+        });
+    });
+</script>
+</html>
