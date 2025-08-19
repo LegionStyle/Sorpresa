@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso al Sistema</title>
+    <title>Acceso Especial</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: #000 url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background: #000 url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
             background-size: cover;
             height: 100vh;
             display: flex;
@@ -17,9 +17,10 @@
             align-items: center;
             overflow: hidden;
             position: relative;
+            color: #fff;
         }
 
-        /* Estrellas animadas */
+        /* Estrellas animadas mejoradas */
         .stars {
             position: absolute;
             top: 0;
@@ -34,128 +35,205 @@
             background-color: #fff;
             border-radius: 50%;
             animation: twinkle var(--duration) infinite ease-in-out;
+            box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.5);
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
 
+        /* Contenedor principal con efecto vidrio */
         .login-container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background: rgba(15, 10, 30, 0.7);
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(214, 238, 81, 0.5);
-            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(214, 180, 255, 0.3),
+                        0 0 15px rgba(255, 215, 0, 0.4) inset;
+            width: 320px;
             text-align: center;
             position: relative;
             z-index: 1;
-            backdrop-filter: blur(5px);
-            border: 1px solid #fcd601;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .login-container:hover {
+            box-shadow: 0 0 40px rgba(214, 180, 255, 0.5),
+                        0 0 20px rgba(255, 215, 0, 0.6) inset;
         }
 
         .login-container h1 {
-            color: #f7f7f7;
+            color: #ffd700;
             margin-bottom: 30px;
-            font-size: 24px;
+            font-size: 26px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            font-weight: 300;
         }
 
+        /* Estilo para el input de contraseña */
         .password-input {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .password-input input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 0px;
             background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid #eebc51;
-            border-radius: 5px;
-            color: white;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            color: #fff;
             font-size: 16px;
             outline: none;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            letter-spacing: 1px;
         }
 
         .password-input input:focus {
-            box-shadow: 0 0 10px rgba(81, 203, 238, 0.8);
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         .password-input label {
             position: absolute;
-            top: 12px;
-            left: 15px;
-            color: #aaa;
+            top: 14px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.7);
             transition: all 0.3s;
             pointer-events: none;
+            letter-spacing: 1px;
         }
 
         .password-input input:focus + label,
         .password-input input:not(:placeholder-shown) + label {
             top: -20px;
-            left: 5px;
+            left: 10px;
             font-size: 12px;
-            color: #fffb00;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 0 5px;
+            color: #ffd700;
+            background-color: rgba(15, 10, 30, 0.8);
+            padding: 0 8px;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
 
+        /* Botón con efecto romántico */
         .login-btn {
-            background: linear-gradient(45deg, #eb3017, #ffa32a);
+            background: linear-gradient(135deg, #ff6b8b, #ff8e53);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 30px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.3s;
+            transition: all 0.4s;
             width: 100%;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
         .login-btn:hover {
-            background: linear-gradient(45deg, #ff552a, #eee351);
-            box-shadow: 0 0 15px rgba(238, 81, 81, 0.8);
+            background: linear-gradient(135deg, #ff8e53, #ff6b8b);
+            box-shadow: 0 7px 20px rgba(255, 107, 139, 0.6);
+            transform: translateY(-2px);
         }
 
+        .login-btn:active {
+            transform: translateY(1px);
+        }
+
+        .login-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover::after {
+            left: 100%;
+        }
+
+        /* Mensaje de error */
         .error-message {
-            color: #f50635;
-            margin-top: 10px;
+            color: #ff6b8b;
+            margin-top: 15px;
             font-size: 14px;
             display: none;
+            text-shadow: 0 0 5px rgba(255, 107, 139, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* Efectos adicionales */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 139, 0.5);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
     </style>
 </head>
 <body>
     <div class="stars" id="stars"></div>
+    <div class="hearts" id="hearts"></div>
     
     <div class="login-container">
-        <h1>Acceso a la sorpresa </h1>
+        <h1>Acceso a la sorpresa</h1>
+        <h3>Un significado importante;
+            Uno que tendrás ahora y siempre. <br>
+            Siempre serás...
+        </h3>
         <form id="loginForm">
             <div class="password-input">
                 <input type="text" id="password" placeholder=" " required>
-                <label for="password">Contraseña</label>
+                <label for="password">Palabra Mágica</label>
             </div>
-            <button type="submit" class="login-btn">Ingresar</button>
-            <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
+            <button type="submit" class="login-btn">Descubrir</button>
+            <div class="error-message" id="errorMessage">Intenta con nuestro secreto</div>
         </form>
     </div>
 
     <script>
-        // Crear estrellas animadas
+        // Crear estrellas animadas mejoradas
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            const starCount = 100;
+            const starCount = 150;
             
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
                 
-                // Tamaño aleatorio entre 1 y 3px
-                const size = Math.random() * 2 + 1;
+                // Tamaño aleatorio entre 1 y 4px
+                const size = Math.random() * 3 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 
@@ -164,38 +242,137 @@
                 star.style.top = `${Math.random() * 100}%`;
                 
                 // Duración de animación aleatoria
-                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                star.style.setProperty('--duration', `${Math.random() * 4 + 2}s`);
                 
                 // Retraso de animación aleatorio
-                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDelay = `${Math.random() * 6}s`;
+                
+                // Color aleatorio (tonos dorados y rosados)
+                const hue = Math.random() * 30 + (Math.random() > 0.5 ? 0 : 330);
+                star.style.backgroundColor = `hsl(${hue}, 80%, 70%)`;
                 
                 starsContainer.appendChild(star);
+            }
+        }
+        
+        // Crear corazones flotantes
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 15;
+            const heartSymbols = ['❤', '♥', '❥', '❣', '❦', '❧'];
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                
+                // Posición aleatoria
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 10 + 15;
+                heart.style.fontSize = `${size}px`;
+                
+                // Duración de animación aleatoria
+                heart.style.animationDuration = `${Math.random() * 4 + 4}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Opacidad aleatoria
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                heartsContainer.appendChild(heart);
             }
         }
         
         // Manejar el formulario de login
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const password = document.getElementById('password').value;
+            const password = document.getElementById('password').value.toLowerCase();
             const errorMessage = document.getElementById('errorMessage');
             
-            // Aquí puedes verificar la contraseña
-            // Este es solo un ejemplo, en una aplicación real deberías usar autenticación segura
-            if (password === "Mi saturno") {
-                // Contraseña correcta, redirigir o mostrar contenido
-                alert("¡Acceso concedido!");
-                window.location.href = "dashboard.html";
+            // Contraseñas aceptadas (puedes agregar más)
+            const acceptedPasswords = ["mi saturno", "saturno", "te amo", "amor"];
+            
+            if (acceptedPasswords.includes(password)) {
+                // Contraseña correcta - efecto de confeti antes de redirigir
+                showConfetti();
+                setTimeout(() => {
+                    window.location.href = "dashboard.html";
+                }, 2000);
             } else {
                 // Contraseña incorrecta
                 errorMessage.style.display = 'block';
+                document.getElementById('password').style.borderColor = '#ff6b8b';
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
+                    document.getElementById('password').style.borderColor = 'rgba(255, 215, 0, 0.5)';
                 }, 3000);
             }
         });
         
-        // Inicializar las estrellas cuando se carga la página
-        window.onload = createStars;
+        // Efecto de confeti
+        function showConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '1000';
+            document.body.appendChild(confettiContainer);
+            
+            const colors = ['#ff6b8b', '#ffd700', '#ff8e53', '#a78bfa', '#7dd3fc'];
+            const symbols = ['❤', '♥', '✦', '✧', '♡', '★'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                confetti.style.position = 'absolute';
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-30px';
+                confetti.style.opacity = '0';
+                confetti.style.transform = 'rotate(0deg)';
+                confetti.style.transition = 'all 1s ease-out';
+                confettiContainer.appendChild(confetti);
+                
+                // Animación
+                setTimeout(() => {
+                    confetti.style.opacity = '1';
+                    confetti.style.top = `${Math.random() * 100}%`;
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    // Desvanecer
+                    setTimeout(() => {
+                        confetti.style.opacity = '0';
+                        setTimeout(() => {
+                            confetti.remove();
+                            if (i === 99) confettiContainer.remove();
+                        }, 1000);
+                    }, 1000);
+                }, i * 20);
+            }
+        }
+        
+        // Inicializar efectos cuando se carga la página
+        window.onload = function() {
+            createStars();
+            createHearts();
+            
+            // Efecto de carga
+            const container = document.querySelector('.login-container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                container.style.transition = 'all 0.8s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 300);
+        };
     </script>
 </body>
 </html>

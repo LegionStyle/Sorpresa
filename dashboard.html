@@ -3,143 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Verdades</title>
+    <title>Portal de Verdades - Nuestro Universo</title>
     <style>
-        body {
+        /* Variables globales con tonos románticos */
+        :root {
+            --primary-color: #ffd700; /* Dorado romántico */
+            --secondary-color: #ff6b8b; /* Rosa amoroso */
+            --accent-color: #dda0dd; /* Lila suave */
+            --text-color: #fff8f8; /* Blanco cálido */
+            --text-secondary: #f0d6ff; /* Lila claro */
+            --bg-color: #0a0a1a; /* Fondo espacial */
+            --card-bg: rgba(20, 10, 30, 0.8); /* Púrpura oscuro translúcido */
+            --border-radius: 12px;
+            --box-shadow: 0 0 20px rgba(255, 107, 139, 0.3);
+            --transition: all 0.4s ease;
+        }
+
+        * {
             margin: 0;
-            padding: 20px 0;
-            font-family: 'Arial', sans-serif;
-            background: #070707;
-            min-height: 100vh;
-            color: white;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
+        /* Estrellas animadas románticas */
         .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -2;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) infinite ease-in-out;
+            opacity: 0;
+            box-shadow: 0 0 10px 1px var(--accent-color);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Corazones flotantes */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 139, 0.6);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Menú de navegación romántico */
+        .main-nav {
+            padding: 15px 0;
+            background: rgba(10, 5, 20, 0.8);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu li {
+            margin: 5px 15px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .menu li a:hover, .menu li a.active {
+            background: var(--secondary-color);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 107, 139, 0.5);
+        }
+
+        /* Hero Section mejorado para destacar Saturno */
+        .hero-section {
+            position: relative;
+            margin-bottom: 40px;
+            height: 80vh;
+        }
+
+        .hero-container {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: brightness(0.8) contrast(1.2) saturate(1.3);
+            transition: all 0.5s ease;
+        }
+
+        .hero-container:hover img {
+            transform: scale(1.02);
+            filter: brightness(0.9) contrast(1.3) saturate(1.4);
+        }
+
+        .hero-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(
+                to bottom, 
+                rgba(10, 5, 20, 0.7) 0%, 
+                rgba(20, 10, 40, 0.4) 50%,
+                rgba(10, 5, 20, 0.7) 100%
+            );
         }
 
         .welcome-box {
             text-align: center;
-            padding: 50px;
-            margin: 0 auto 60px;
+            padding: 30px;
+            margin: 0 auto;
             width: 90%;
             max-width: 800px;
-            
+            background: rgba(20, 10, 40, 0.2);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 30px rgba(255, 42, 109, 0.4); }
-            100% { box-shadow: 0 0 50px rgba(255, 42, 109, 0.7); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        h1 {
-            color: #f5f3f3;
-            font-size: 3.5rem;
+        /* Efecto de anillos alrededor de Saturno */
+        .saturn-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            border: 2px dashed rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: rotate 60s linear infinite;
+        }
+
+        .saturn-ring::before, .saturn-ring::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 215, 0, 0.2);
+        }
+
+        .saturn-ring::before {
+            width: 140%;
+            height: 140%;
+        }
+
+        .saturn-ring::after {
+            width: 160%;
+            height: 160%;
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Partículas alrededor de Saturno */
+        .saturn-particle {
+            position: absolute;
+            background-color: rgba(255, 215, 0, 0.7);
+            border-radius: 50%;
+            animation: orbit linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(50px) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: rotate(360deg) translateX(50px) rotate(-360deg);
+                opacity: 0.8;
+            }
+        }
+
+        .welcome-box h1 {
+            color: var(--primary-color);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
         .welcome-message {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
             line-height: 1.6;
-            color: #eee;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        /* Sección de significado romántica */
+        .meaning-section {
+            padding: 40px 0;
+        }
+
+        .significado-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .significado-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                      rgba(255, 107, 139, 0.1) 0%, 
+                      rgba(255, 215, 0, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .significado-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .significado-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            border-radius: 3px;
+        }
+
+        .meaning-content p {
+            margin-bottom: 20px;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: var(--text-secondary);
+            line-height: 1.9;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Sección de tarjetas románticas */
+        .cards-section {
+            padding: 40px 0;
         }
 
         .truths-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto 60px;
+            gap: 30px;
+            padding: 20px 0;
+            margin-bottom: 40px;
         }
 
         .truth-box {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 30px;
-            border: 1px solid #f8f405;
-            box-shadow: 0 0 15px rgba(255, 145, 0, 0.3);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(3px);
+            border: 1px solid var(--accent-color);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
             text-align: center;
-            min-height: 200px;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .truth-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                      rgba(255, 107, 139, 0.1) 0%, 
+                      rgba(255, 215, 0, 0.1) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .truth-box.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .truth-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.4);
+        }
+
+        .truth-box:hover::before {
+            opacity: 1;
         }
 
         .truth-box h2 {
-            color: #dda60f;
+            color: var(--primary-color);
             margin: 0 0 15px 0;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 2vw, 1.8rem);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .truth-box h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .truth-box:hover h2::after {
+            width: 80px;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
         }
 
         .truth-content {
-            font-size: 1.1rem;
-            color: #ddd;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: var(--text-secondary);
             margin-bottom: 20px;
             flex-grow: 1;
+            line-height: 1.7;
         }
 
         .truth-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #fcfcfc;
-            color: rgb(3, 0, 0);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--bg-color);
             border-radius: 50%;
-            line-height: 40px;
-            text-align: center;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            box-shadow: 0 0 10px rgba(255, 107, 139, 0.3);
+        }
+
+        /* Botones románticos */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            box-shadow: 0 6px 20px rgba(255, 107, 139, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn::after {
+            content: '→';
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .btn:hover::after {
+            transform: translateX(5px);
         }
 
         .logout-btn {
             display: block;
-            width: 200px;
+            width: 220px;
             margin: 30px auto 0;
-            padding: 12px;
-            background: linear-gradient(45deg, #e41414, #d37000);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary-color), #ff8e53);
         }
 
         .logout-btn:hover {
-            background: linear-gradient(45deg, #f11304, #f37024);
-            box-shadow: 0 0 20px rgba(248, 1, 1, 0.6);
-            transform: translateY(-3px);
+            background: linear-gradient(135deg, #ff8e53, var(--primary-color));
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .welcome-message {
-                font-size: 1.2rem;
+        /* Footer romántico */
+        .main-footer {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(10, 5, 20, 0.8);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                height: 60vh;
             }
             
             .truths-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                height: 50vh;
+            }
+            
+            .menu li {
+                width: 100%;
+                text-align: center;
             }
             
             .truth-box {
@@ -147,180 +534,115 @@
             }
         }
 
-        /* Estrellas animadas */
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50000px;
-            animation: twinkle var(--duration, 3s) infinite ease-in-out;
-            opacity: 0;
+        @media (max-width: 576px) {
+            .hero-container {
+                height: 400px;
+            }
+            
+            .truths-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-box, .significado-container {
+                padding: 25px;
+            }
+            
+            .logout-btn {
+                width: 180px;
+                padding: 10px 20px;
+            }
         }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        body {
-    font-family:  Arial, Helvetica ;
-}
-
-.menu {
-    list-style: none; 
-    padding: 0;
-    background:  rgba(0, 0, 0, 0.7);
-    width: 90%; 
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    border: 1px solid #f7cb3a;
-    margin: 0 auto 30px;
-
-}
-
-.menu li a{
-    text-decoration: none;
-    color: white;
-    padding: 20px;
-    display: block;
-    font-size: 16px;
-}
-
-.menu li{
-    display: inline-block;
-    text-align: center; 
-    padding: 10px;
-}
-
-.menu li a:hover{
-    background: #fffffe;
-    color: #000000;
-    border-radius: 10px;
-}
-    /* Estilos para la imagen de fondo */
-.hero-container {
-            position: relative;
-            flex: 1;
-            overflow: hidden;
-        }
-        
-        .hero-image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .hero-content {
-            position: relative;
-            height: 700px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        
-        .hero-content h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-        
-        
-        
     </style>
 </head>
 <body>
-    <ul class="menu">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="historia.html">Historia</a></li>
-        <li><a href="verdad.html">Verdades</a></li>
-        <li><a href="escritos.html">Escritos</a></li>
-        <li><a href="sentir.html">Sentir</a></li>
-        <li><a href="dashboard.html">Portal</a></li>    
-    </ul>
+    <!-- Menú de navegación romántico -->
+    <nav class="main-nav">
+        <ul class="menu">
+            <li><a href="index.html">Portal</a></li>
+            <li><a href="escritos.html">Escritos</a></li>
+            <li><a href="dashboard.html">Inicio</a></li>  
+        </ul>
+    </nav>
     
+    <!-- Fondo de estrellas y corazones -->
     <div class="stars" id="stars"></div>
-    <div class="hero-container">
-        <!-- Imagen de fondo insertada directamente en HTML -->
-        <img src="imagenes/upscalemedia-transformed.jpeg"  width="100px" height="100px" alt="Cafetería" class="hero-image">
-        
-        <!-- Contenido superpuesto -->
-        <div class="hero-content">
-            <div class="welcome-box">
-                <h1>¡LO LOGRASTE!</h1>
-                <p class="welcome-message">
-                    Ahora podrás ver la verdad que hay detrás.<br>
-                    Y quiero disculparme por ocultartelo...
-                </p>
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Hero Section con Saturno destacado -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <img src="imagenes/upscalemedia-transformed.jpeg" alt="Saturno - Símbolo de nuestro amor" class="hero-image">
+            <div class="saturn-ring"></div>
+            <div class="hero-content">
+                <div class="welcome-box">
+                    <h1>¡LO LOGRASTE!</h1>
+                    <p class="welcome-message">
+                        Ahora podrás ver lo que tenía preparado para ti.<br>
+                        Perdóname por haberlo guardado tanto tiempo...
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="truths-container">
-        <div class="truth-box">
-            <div class="truth-number">1</div>
-            <h2>La historia</h2>
-            <div class="truth-content">
-                ¿Cómo comenzó todo? Cómo me fui enamorando de tí ❤️
+    </section>
+    
+    <!-- Sección de significado romántico -->
+    <section class="meaning-section">
+        <div class="container significado-container">
+            <h2>¿Sabes por qué elegí Saturno para ti?</h2>
+            <div class="meaning-content">
+                <p>Saturno no fue un regalo casual. Es la representación de todo lo que siento y que a veces las palabras no pueden expresar. Sus anillos son como el amor que te tengo: sin principio ni fin, eterno en su belleza.</p>
+                
+                <p>Es el planeta que más me ha fascinado desde niño, y ahora eres tú quien ocupa ese lugar en mi corazón. Como Saturno, eres única en todo el universo, con una belleza que trasciende lo terrenal.</p>
+                
+                <p>Los anillos de Saturno giran sin cesar, como mis pensamientos alrededor de ti. Y aunque a veces parezca que estamos en órbitas diferentes, la gravedad de nuestro cariño siempre nos mantendrá unidos.</p>
+                
+                <p>Te regalé Saturno porque quería darte algo tan especial como lo eres tú para mí. Para que cuando lo veas, recuerdes que mi amor por ti es tan vasto como esos anillos, y que sin importar el tiempo o la distancia, siempre serás mi planeta favorito en este universo.</p>
             </div>
-            <a href="historia.html" class="logout-btn">Ingresa aquí</a>
         </div>
-
-        <div class="truth-box">
-            <div class="truth-number">2</div>
-            <h2>Las verdades</h2>
-            <div class="truth-content">
-                No siempre todo fue verdad y admito que te mentí y aquí te diré cuáles son las verdades ❤️
+    </section>
+    
+    <!-- Sección de tarjetas románticas -->
+    <section class="cards-section">
+        <div class="container truths-container">
+            
+            <div class="truth-box">
+                <div class="truth-number">1</div>
+                <h2>Mis Escritos</h2>
+                <div class="truth-content">
+                    Las palabras que escribí en silencio, guardadas para cuando estuviera listo ❤️
+                </div>
+                <a href="escritos.html" class="btn">Descubrir</a>
             </div>
-            <a href="verdad.html" class="logout-btn">Ingresa aquí</a>
-        </div>
 
-        <div class="truth-box">
-            <div class="truth-number">3</div>
-            <h2>Mis escritos</h2>
-            <div class="truth-content">
-                ¿Recuerdas mis poemas? Pues eran para ti ❤️
+            <div class="truth-box">
+                <div class="truth-number">2</div>
+                <h2>Proximamente
+                    <!--Nuestra Historia--></h2>
+                <div class="truth-content">
+                    <!--Cómo un simple encuentro se convirtió en lo más importante de mi vida-->
+                </div>
+                <a href="#" class="btn">Próximamente</a>
             </div>
-            <a href="escritos.html" class="logout-btn">Ingresa aquí</a>
-        </div>
 
-        <div class="truth-box">
-            <div class="truth-number">4</div>
-            <h2>Mi sentir</h2>
-            <div class="truth-content">
-                Cómo me sentí durante este tiempo pequeño junto a tí ❤️
+            <div class="truth-box">
+                <div class="truth-number">3</div>
+                <h2>Proximamente
+                    <!--Mis Sentimientos--></h2>
+                <div class="truth-content">
+                    <!--Lo que callé por miedo a asustarte, pero que necesito que sepas-->
+                </div>
+                <a href="#" class="btn">Próximamente</a>
             </div>
-            <a href="sentir.html" class="logout-btn">Ingresa aquí</a>
         </div>
-    </div>
-
-    <a href="index.html" class="logout-btn">Salir del Portal</a>
+    </section>
+    
+    <!-- Footer romántico -->
+    <footer class="main-footer">
+        <a href="index.html" class="btn logout-btn">Volver al Inicio</a>
+    </footer>
 
     <script>
-        // Crear estrellas animadas
+        // Crear estrellas animadas románticas
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const starCount = 200;
@@ -339,21 +661,104 @@
                 star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
                 star.style.animationDelay = `${Math.random() * 8}s`;
                 
+                // Color aleatorio (tonos rosados y dorados)
+                const hue = Math.random() > 0.5 ? 
+                    Math.random() * 20 + 330 : // Rosados
+                    Math.random() * 20 + 40;   // Dorados
+                star.style.backgroundColor = `hsl(${hue}, 80%, 70%)`;
+                
                 starsContainer.appendChild(star);
             }
         }
 
-        // Efecto de aparición escalonada para las cajas de verdad
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
+        // Crear corazones flotantes
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 15;
+            const heartSymbols = ['❤', '♥', '❥', '❣', '❦'];
             
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                const size = Math.random() * 10 + 15;
+                heart.style.fontSize = `${size}px`;
+                
+                heart.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Efecto de partículas alrededor de Saturno
+        function createSaturnParticles() {
+            const container = document.querySelector('.hero-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('saturn-particle');
+                
+                // Posición aleatoria alrededor de la imagen
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const x = 50 + Math.cos(angle) * distance;
+                const y = 50 + Math.sin(angle) * distance;
+                
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                particle.style.width = `${Math.random() * 3 + 1}px`;
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Animación de aparición de las tarjetas
+        function animateCards() {
             const truthBoxes = document.querySelectorAll('.truth-box');
             truthBoxes.forEach((box, index) => {
                 setTimeout(() => {
-                    box.style.opacity = '1';
-                    box.style.transform = 'translateY(0)';
+                    box.classList.add('visible');
                 }, 200 * index);
             });
+        }
+
+        // Observador de intersección para animaciones al hacer scroll
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.truth-box').forEach(box => {
+                observer.observe(box);
+            });
+        }
+
+        // Inicialización cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createHearts();
+            createSaturnParticles();
+            setupIntersectionObserver();
+            
+            // Para navegadores que no soportan IntersectionObserver
+            if (!('IntersectionObserver' in window)) {
+                animateCards();
+            }
         });
     </script>
 </body>

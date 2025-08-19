@@ -1,0 +1,176 @@
+/* Estilos generales */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Menú de navegación */
+.menu {
+    list-style: none; 
+    padding: 0;
+    background: black;
+    width: 90%; 
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #f7cb3a;
+    margin: 0 auto 30px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    display: block;
+    font-size: 16px;
+}
+
+.menu li {
+    display: inline-block;
+    text-align: center; 
+    padding: 10px;
+}
+
+.menu li a:hover {
+    background: #fffffe;
+    color: #000000;
+    border-radius: 10px;
+}
+
+.contenedor {
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Título principal */
+.titulo-principal {
+    color: #ffd102;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    border-bottom: 1px solid #f7cb3a;
+    margin-bottom: 100px;
+    box-shadow: 0 0 15px rgb(253, 192, 22);
+}
+
+/* Bloques de contenido */
+.bloque {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+/* Alternancia automática de imágenes */
+.bloque:nth-child(odd) .texto {
+    order: 1;
+}
+.bloque:nth-child(odd) .imagen {
+    order: 2;
+}
+.bloque:nth-child(even) .texto {
+    order: 2;
+}
+.bloque:nth-child(even) .imagen {
+    order: 1;
+}
+
+/* Secciones de texto */
+.texto {
+    flex: 1;
+    min-width: 300px;
+}
+
+.subtitulo {
+    color: #ffd102;
+    margin-top: 0;
+    font-size: 1.8em;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f7cb3a;
+}
+
+.subtitulo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: #f7cb3a;
+}
+
+/* Secciones de imagen */
+.imagen {
+    flex: 1;
+    min-width: 30px;
+    position: relative;
+}
+
+.imagen img {
+    width: 94%;
+    border-radius: 8px;
+    border: 1px solid #f7cb3a;
+    box-shadow: 0 0 15px rgb(243, 162, 69);
+    transition: transform 0.3s;
+}
+
+.imagen img:hover {
+    transform: scale(1.02);
+}
+
+
+
+/* Elementos de texto */
+.destacado {
+    color: #ffd102;
+    font-weight: bold;
+}
+
+blockquote {
+    border-left: 3px solid #f7cb3a;
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #dddddd;
+}
+
+/* Listas */
+ol, ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Estilos para las estrellas */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50000px; /* Forma circular perfecta */
+    animation: twinkle var(--duration, 3s) infinite ease-in-out;
+    opacity: 0;
+}
+
+/* Animación de parpadeo */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Esto las coloca detrás de todo */
+}
