@@ -229,6 +229,15 @@
             font-size: 14px;
         }
 
+        /* estilo para pistas de los acertijos */
+        .pista-text {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-style: normal;
+        }
+
         .acertijo-input {
             width: 100%;
             padding: 10px;
@@ -295,6 +304,8 @@
             <div class="acertijo-text">
                 "El trayecto donde las horas se volvían minutos y las distancias se acortaban con cada palabra compartida"
             </div>
+            <div class="pista-text">Pista: recuerda aquel recorrido al borde del mar, donde el tiempo parecía no alcanzar.</div>
+            <div class="pista-text" id="hint1"></div>
             <input type="text" class="acertijo-input" id="acertijo1" placeholder="Tu respuesta...">
             <div class="acertijo-indicator">Acertijo 1 de 3</div>
             <button class="next-btn" id="next1">Siguiente Acertijo</button>
@@ -305,6 +316,7 @@
             <div class="acertijo-text">
                 "Aquella noche llena de giros, corrientes e inesperados, un evento luminoso y rítmico donde la última nota musical no fue un final, sino el primer compás de una melodía que aún resuena en nuestros diálogos"
             </div>
+            <div class="pista-text">Pista: evoca la noche en que las luces y la música marcaban un cierre y un inicio juntos.</div>
             <input type="text" class="acertijo-input" id="acertijo2" placeholder="Tu respuesta...">
             <div class="acertijo-indicator">Acertijo 2 de 3</div>
             <button class="next-btn" id="next2">Siguiente Acertijo</button>
@@ -380,6 +392,7 @@
         // Sistema de acertijos consecutivos
         let acertijoActual = 1;
         const respuestasUsuario = ['', '', ''];
+        const failCounts = [0, 0, 0]; // contador de intentos fallidos para cada acertijo
 
         function actualizarProgreso() {
             const progress = document.getElementById('progress');
@@ -394,17 +407,35 @@
             // Respuestas correctas para cada acertijo
             const respuestasCorrectas = [
                 ["viaje a mollendo", "mollendo", "viaje de promo"], // Acertijo 1
-                ["baile de promocion", "baile", "promocion"], // Acertijo 2
+                [], // Acertijo 2 se maneja por lógica especial más abajo
                 ["saturno", "mi saturno"] // Acertijo 3
             ];
 
-            const correcto = respuestasCorrectas[numero - 1].includes(respuesta);
+            let correcto;
+            if (numero === 2) {
+                // aceptar cualquier cosa que mencione baile y promo (cualquiera variante)
+                const norm = respuesta.replace(/"/g, ''); // quitar comillas si las incluye
+                correcto = /baile/i.test(norm) && /promo/.test(norm);
+            } else {
+                correcto = respuestasCorrectas[numero - 1].includes(respuesta);
+            }
             
             if (correcto) {
                 respuestasUsuario[numero - 1] = respuesta;
                 errorMessage.style.display = 'none';
                 return true;
             } else {
+                // incremento de contador de errores
+                failCounts[numero - 1]++;
+
+                // si es el primer acertijo y ya falló 10 veces, dar una pista más directa
+                if (numero === 1 && failCounts[0] === 10) {
+                    const hintEl = document.getElementById('hint1');
+                    if (hintEl) {
+                        hintEl.textContent = 'Un viaje a...';
+                    }
+                }
+
                 errorMessage.style.display = 'block';
                 document.getElementById(`acertijo${numero}`).style.borderColor = '#ff6b8b';
                 setTimeout(() => {
