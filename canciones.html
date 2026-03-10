@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canciones para ti · Nuestro Universo</title>
+    <style>
+        /* ===== VARIABLES (misma identidad visual) ===== */
+        :root {
+            --primary-color: #ffd700;
+            --secondary-color: #ff6b8b;
+            --accent-color: #dda0dd;
+            --text-color: #fff8f8;
+            --text-secondary: #f0d6ff;
+            --bg-color: #0a0a1a;
+            --card-bg: rgba(20, 10, 30, 0.85);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Playfair Display', serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ESTRELLAS DE FONDO ===== */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ===== Navegación ===== */
+        .main-nav {
+            padding: 15px 0;
+            background: rgba(10, 5, 20, 0.9);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .menu li a:hover,
+        .menu li a.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* ===== ENCABEZADO SIN SATURNO ===== */
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .page-header h2 {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .header-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        .header-decoration span {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .header-decoration span:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .header-decoration span:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ===== DESCRIPCIÓN CORTA ===== */
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 15px 25px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            border-left: 3px solid var(--secondary-color);
+            border-right: 3px solid var(--secondary-color);
+            background: rgba(255, 107, 139, 0.05);
+            border-radius: 50px;
+            line-height: 1.8;
+        }
+
+        /* ===== GRID DE CANCIONES ===== */
+        .canciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px 25px 50px;
+        }
+
+        .cancion-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px 20px 25px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .cancion-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(221, 160, 221, 0.4);
+            padding-bottom: 12px;
+        }
+
+        .song-number {
+            background: var(--secondary-color);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px #ff6b8b;
+            flex-shrink: 0;
+        }
+
+        .card-header h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        .song-description {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+            padding: 0 5px;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            min-height: 80px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            background: #000;
+            transition: border 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .cancion-card:hover .video-container {
+            border-color: var(--accent-color);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* ===== BOTÓN PARA VER EN YOUTUBE ===== */
+        .youtube-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .youtube-btn:hover {
+            background: linear-gradient(135deg, #ff3333, #e60000);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .youtube-btn i {
+            margin-right: 5px;
+        }
+
+        /* ===== ONDA SONORA DECORATIVA (footer) ===== */
+        .soundwave-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin: 30px 0 20px;
+            height: 40px;
+        }
+
+        .soundwave-footer span {
+            display: block;
+            width: 5px;
+            height: 20px;
+            background: linear-gradient(to top, var(--secondary-color), var(--primary-color));
+            border-radius: 3px;
+            animation: soundBars 1.2s ease-in-out infinite;
+        }
+
+        .soundwave-footer span:nth-child(2) { animation-delay: 0.2s; height: 30px; }
+        .soundwave-footer span:nth-child(3) { animation-delay: 0.4s; height: 25px; }
+        .soundwave-footer span:nth-child(4) { animation-delay: 0.6s; height: 35px; }
+        .soundwave-footer span:nth-child(5) { animation-delay: 0.8s; height: 20px; }
+        .soundwave-footer span:nth-child(6) { animation-delay: 0.5s; height: 28px; }
+        .soundwave-footer span:nth-child(7) { animation-delay: 0.3s; height: 22px; }
+
+        @keyframes soundBars {
+            0%, 100% { transform: scaleY(0.6); opacity: 0.6; }
+            50% { transform: scaleY(1.2); opacity: 1; }
+        }
+
+        .footer-note {
+            text-align: center;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
+            margin-top: 20px;
+        }
+
+        .footer-note a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 2.4rem; }
+            .canciones-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <ul class="menu">
+            <li><a href="index.html">Portal</a></li>
+            <li><a href="escritos.html">Escritos</a></li>
+            <li><a href="dashboard.html">Inicio</a></li>
+            <li><a href="canciones.html">Canciones</a></li>
+            <li><a href="calendario.html">Calendario</a></li>        <!-- agregado -->
+        </ul>
+    </nav>
+
+    <div class="stars" id="stars"></div>
+
+    <!-- ENCABEZADO: SIN SATURNO, SÓLO TEXTO Y DECORACIÓN -->
+    <header class="page-header">
+        <h1>🎵 Canciones para Ti</h1>
+        <h2>melodías que guardan pedazos de nosotros</h2>
+        <div class="header-decoration">
+            <span>♪</span>
+            <span>♫</span>
+            <span>♩</span>
+        </div>
+    </header>
+
+    <div class="intro-text">
+        « Cada canción tiene una historia, un momento, un sentimiento que me conecta contigo.
+        Espero que al escucharlas, sientas todo lo que a veces las palabras no pueden decir. »
+    </div>
+
+    <!-- GRID DE 12 CANCIONES CON DESCRIPCIONES PERSONALES Y BOTÓN A YOUTUBE -->
+    <section class="canciones-grid">
+        <!-- 1. Hasta la Raíz -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">1</span>
+                <h3>Más que amigos - Mayte Meyer </h3>
+            </div>
+            <div class="song-description">
+                La canción que te canté tantas veces en secreto y te mencioné luego.
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/FGsuQfHDoeQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/FGsuQfHDoeQ" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 2. Amor del Bueno -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">2</span>
+                <h3>Perderme - Morat</h3>
+            </div>
+            <div class="song-description">
+                Ahora que las cosas terminan, te dedico esta canción, para esta despedida, y para desearte lo mejor aun estando lejos. Ahí estaré siempre que me necesites o en tus momentos importantes.
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/OnsM-M-DrWM" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/OnsM-M-DrWM" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 3. El lugar correcto -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">3</span>
+                <h3>Consejo de amor - tini, morat</h3>
+            </div>
+            <div class="song-description">
+                Canción que me recuerda que pude haber sido yo, y ahora dejaste un loco enamorado extrañando lo que no llegó a pasar.
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/lx3HmHuGelE" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/lx3HmHuGelE" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 4. Me Voy -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">4</span>
+                <h3>Saturno - Pablo Alboran </h3>
+            </div>
+            <div class="song-description">
+                Una canción que bueno, no toda la letra es lo indicado, pero cada que la escuche sentiré nostalgia por ti, por nosotros...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5Ipg_Aof1SM" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/5Ipg_Aof1SM" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 5. Perfecta -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">5</span>
+                <h3>Si tu la quieres - David Bisbal</h3>
+            </div>
+            <div class="song-description">
+                No todo es tristeza, hay que ser positivo, algo que me enseñaste. Canción que me gustaría cantar junto a ti si es que se llega a dar...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qjWmbq9AcK4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/qjWmbq9AcK4" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 6. ¿Y Si Lo Intentamos? -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">6</span>
+                <h3>Sobre la marcha - Andres obregon, Kakalo</h3>
+            </div>
+            <div class="song-description">
+                Canción que te dedico más que nada ahora, y si lo intentamos...?
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/LwosD3_lR38" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/LwosD3_lR38" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 7. Otra Vida -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">7</span>
+                <h3>En otra vida - lasso, yami safdie</h3>
+            </div>
+            <div class="song-description">
+                Un poquito de la idea de "tal vez en otra vida" jajaja...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/A2aixdFINOQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/A2aixdFINOQ" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 8. Lo que siento por ti -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">8</span>
+                <h3>Pero te conoci - Reik </h3>
+            </div>
+            <div class="song-description">
+                Un poquito de lo que siento por ti...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/rcRX1ma5Zh4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/rcRX1ma5Zh4" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 9. Una Oportunidad -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">9</span>
+                <h3>¿Que pasaria? - Alex Ponce</h3>
+            </div>
+            <div class="song-description">
+                ¿Qué pasaría si me dieras una oportunidad...?
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/gkWdxjD0wW8" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/gkWdxjD0wW8" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 10. Mi Persona Favorita -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">10</span>
+                <h3>Como ella ya no hay- Alex Ponce</h3>
+            </div>
+            <div class="song-description">
+                Si alguien más llegase a tu vida en caso nos alejemos, me gustaría que esa persona escuche esto...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/EdhY-o7Gpjc" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/EdhY-o7Gpjc" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 11. Rayando el Sol -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">11</span>
+                <h3>Abrazame- Angela Aguilar, Felipe Botello</h3>
+            </div>
+            <div class="song-description">
+                Canción de una cantante que me mostraste, y bueno, me hace pensar en ti.
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/4Y2bL6AcoKc" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/4Y2bL6AcoKc" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+
+        <!-- 12. Dos -->
+        <div class="cancion-card">
+            <div class="card-header">
+                <span class="song-number">12</span>
+                <h3>Podemos ser dos - Camino a Belen</h3>
+            </div>
+            <div class="song-description">
+                Podríamos ser dos...
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/1gYnBb8ukGY" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://youtu.be/1gYnBb8ukGY" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+        </div>
+    </section>
+
+    <!-- ONDA SONORA DECORATIVA (footer) -->
+    <div class="soundwave-footer">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <footer class="footer-note">
+        <p>Con ❤️, cada nota es un susurro del universo para ti.</p>
+        <p><a href="index.html">Volver al Portal</a></p>
+    </footer>
+
+    <script>
+        (function() {
+            // Generar estrellas de fondo
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = (Math.random() * 2 + 1) + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                starsContainer.appendChild(star);
+            }
+        })();
+    </script>
+</body>
+</html>
