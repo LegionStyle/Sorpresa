@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "titulo": "Más que amigos",
+        "artista": "Mayte Meyer",
+        "descripcion": "La canción que te canté tantas veces en secreto y te mencioné luego.",
+        "url": "https://youtu.be/FGsuQfHDoeQ"
+    },
+    {
+        "id": 2,
+        "titulo": "Perderme",
+        "artista": "Morat",
+        "descripcion": "Ahora que las cosas terminan, te dedico esta canción, para esta despedida, y para desearte lo mejor aun estando lejos. Ahí estaré siempre que me necesites o en tus momentos importantes.",
+        "url": "https://youtu.be/OnsM-M-DrWM"
+    },
+    {
+        "id": 3,
+        "titulo": "Consejo de amor",
+        "artista": "Tini, Morat",
+        "descripcion": "Canción que me recuerda que pude haber sido yo, y ahora dejaste un loco enamorado extrañando lo que no llegó a pasar.",
+        "url": "https://youtu.be/lx3HmHuGelE"
+    },
+    {
+        "id": 4,
+        "titulo": "Saturno",
+        "artista": "Pablo Alborán",
+        "descripcion": "Una canción que bueno, no toda la letra es lo indicado, pero cada que la escuche sentiré nostalgia por ti, por nosotros...",
+        "url": "https://youtu.be/5Ipg_Aof1SM"
+    },
+    {
+        "id": 5,
+        "titulo": "Si tú la quieres",
+        "artista": "David Bisbal",
+        "descripcion": "No todo es tristeza, hay que ser positivo, algo que me enseñaste. Canción que me gustaría cantar junto a ti si es que se llega a dar...",
+        "url": "https://youtu.be/qjWmbq9AcK4"
+    },
+    {
+        "id": 6,
+        "titulo": "Sobre la marcha",
+        "artista": "Andrés Obregón, Kakalo",
+        "descripcion": "Canción que te dedico más que nada ahora, y si lo intentamos...?",
+        "url": "https://youtu.be/LwosD3_lR38"
+    },
+    {
+        "id": 7,
+        "titulo": "En otra vida",
+        "artista": "Lasso, Yami Safdie",
+        "descripcion": "Un poquito de la idea de 'tal vez en otra vida' jajaja...",
+        "url": "https://youtu.be/A2aixdFINOQ"
+    },
+    {
+        "id": 8,
+        "titulo": "Pero te conocí",
+        "artista": "Reik",
+        "descripcion": "Un poquito de lo que siento por ti...",
+        "url": "https://youtu.be/rcRX1ma5Zh4"
+    },
+    {
+        "id": 9,
+        "titulo": "¿Qué pasaría?",
+        "artista": "Alex Ponce",
+        "descripcion": "¿Qué pasaría si me dieras una oportunidad...?",
+        "url": "https://youtu.be/gkWdxjD0wW8"
+    },
+    {
+        "id": 10,
+        "titulo": "Como ella ya no hay",
+        "artista": "Alex Ponce",
+        "descripcion": "Si alguien más llegase a tu vida en caso nos alejemos, me gustaría que esa persona escuche esto...",
+        "url": "https://youtu.be/EdhY-o7Gpjc"
+    },
+    {
+        "id": 11,
+        "titulo": "Abrázame",
+        "artista": "Ángela Aguilar, Felipe Botello",
+        "descripcion": "Canción de una cantante que me mostraste, y bueno, me hace pensar en ti.",
+        "url": "https://youtu.be/4Y2bL6AcoKc"
+    },
+    {
+        "id": 12,
+        "titulo": "Podemos ser dos",
+        "artista": "Camino a Belén",
+        "descripcion": "Podríamos ser dos...",
+        "url": "https://youtu.be/1gYnBb8ukGY"
+    },
+    {
+        "id": 13,
+        "titulo": "Mi corazón es tuyo",
+        "artista": "Axel, Kaay",
+        "descripcion": "Una canción alegre y movida, que describe lo que siento y quiero decir.",
+        "url": "https://youtu.be/tGfZS1lvM00"
+    },
+    {
+        "id": 14,
+        "titulo": "Coleccionista de canciones",
+        "artista": "Camila",
+        "descripcion": "Expresa un poco el deseo de poder estar contigo siempre.",
+        "url": "https://youtu.be/c5tH0YTxFnc"
+    },
+    {
+        "id": 15,
+        "titulo": "Causa perdida",
+        "artista": "Morat",
+        "descripcion": "Mi razón por la que no me quiero rendir y anhelo una oportunidad. No me lo perdonaría, no quiero que se quede como... una causa perdida.",
+        "url": "https://youtu.be/BvvQ_tZv72E"
+    },
+    {
+        "id": 16,
+        "titulo": "Quiero decirte",
+        "artista": "Sebastián Yatra",
+        "descripcion": "Quiero decirte lo que siento y me alegro de habértelo dicho.",
+        "url": "https://youtu.be/T5LUuqGiig8"
+    },
+    {
+        "id": 17,
+        "titulo": "Fantasía",
+        "artista": "Sebastián Yatra",
+        "descripcion": "No se adecua mucho a la situación pero me gusta la parte donde dice que no me quiero rendir.",
+        "url": "https://youtu.be/7BinD8qJjqM"
+    },
+    {
+        "id": 18,
+        "titulo": "No hay nadie más",
+        "artista": "Sebastián Yatra",
+        "descripcion": "Y es que en este mundo no hay nadie como tú.",
+        "url": "https://youtu.be/sD9_l3oDOag"
+    },
+    {
+        "id": 19,
+        "titulo": "Quiero decirte",
+        "artista": "Abraham Mateo, Ana Mena",
+        "descripcion": "En caso todo salga mal, quisiera decirte estas palabras...",
+        "url": "https://youtu.be/QRvPuCoTMp0?list=RDQRvPuCoTMp0"
+    },
+    {
+        "id": 20,
+        "titulo": "Abecedario",
+        "artista": "Maca & Gero",
+        "descripcion": "¿Y si empezamos de nuevo? Una nueva historia, sin los errores del pasado...",
+        "url": "https://youtu.be/XvDdCut1r08"
+    }
+]
