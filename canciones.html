@@ -89,7 +89,7 @@
             color: white;
         }
 
-        /* ===== ENCABEZADO SIN SATURNO ===== */
+        /* ===== ENCABEZADO ===== */
         .page-header {
             text-align: center;
             padding: 60px 20px 30px;
@@ -154,6 +154,28 @@
             line-height: 1.8;
         }
 
+        /* ===== LOADER ===== */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            grid-column: 1 / -1;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* ===== GRID DE CANCIONES ===== */
         .canciones-grid {
             display: grid;
@@ -174,6 +196,16 @@
             flex-direction: column;
             backdrop-filter: blur(4px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cancion-card:hover {
@@ -211,6 +243,14 @@
             font-size: 1.2rem;
             flex: 1;
             line-height: 1.3;
+        }
+
+        .card-header h3 span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: normal;
+            margin-top: 4px;
         }
 
         .song-description {
@@ -277,6 +317,17 @@
             margin-right: 5px;
         }
 
+        /* ===== MENSAJE DE ERROR ===== */
+        .error-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            background: rgba(255, 107, 139, 0.1);
+            border-radius: var(--border-radius);
+        }
+
         /* ===== ONDA SONORA DECORATIVA (footer) ===== */
         .soundwave-footer {
             display: flex;
@@ -340,14 +391,14 @@
             <li><a href="index.html">Portal</a></li>
             <li><a href="escritos.html">Escritos</a></li>
             <li><a href="dashboard.html">Inicio</a></li>
-            <li><a href="canciones.html">Canciones</a></li>
-            <li><a href="calendario.html">Calendario</a></li>        <!-- agregado -->
+            <li><a href="canciones.html" class="active">Canciones</a></li>
+            <li><a href="calendario.html">Calendario</a></li>
         </ul>
     </nav>
 
     <div class="stars" id="stars"></div>
 
-    <!-- ENCABEZADO: SIN SATURNO, SÓLO TEXTO Y DECORACIÓN -->
+    <!-- ENCABEZADO -->
     <header class="page-header">
         <h1>🎵 Canciones para Ti</h1>
         <h2>melodías que guardan pedazos de nosotros</h2>
@@ -363,190 +414,14 @@
         Espero que al escucharlas, sientas todo lo que a veces las palabras no pueden decir. »
     </div>
 
-    <!-- GRID DE 12 CANCIONES CON DESCRIPCIONES PERSONALES Y BOTÓN A YOUTUBE -->
-    <section class="canciones-grid">
-        <!-- 1. Hasta la Raíz -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">1</span>
-                <h3>Más que amigos - Mayte Meyer </h3>
-            </div>
-            <div class="song-description">
-                La canción que te canté tantas veces en secreto y te mencioné luego.
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/FGsuQfHDoeQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/FGsuQfHDoeQ" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 2. Amor del Bueno -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">2</span>
-                <h3>Perderme - Morat</h3>
-            </div>
-            <div class="song-description">
-                Ahora que las cosas terminan, te dedico esta canción, para esta despedida, y para desearte lo mejor aun estando lejos. Ahí estaré siempre que me necesites o en tus momentos importantes.
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/OnsM-M-DrWM" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/OnsM-M-DrWM" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 3. El lugar correcto -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">3</span>
-                <h3>Consejo de amor - tini, morat</h3>
-            </div>
-            <div class="song-description">
-                Canción que me recuerda que pude haber sido yo, y ahora dejaste un loco enamorado extrañando lo que no llegó a pasar.
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/lx3HmHuGelE" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/lx3HmHuGelE" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 4. Me Voy -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">4</span>
-                <h3>Saturno - Pablo Alboran </h3>
-            </div>
-            <div class="song-description">
-                Una canción que bueno, no toda la letra es lo indicado, pero cada que la escuche sentiré nostalgia por ti, por nosotros...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/5Ipg_Aof1SM" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/5Ipg_Aof1SM" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 5. Perfecta -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">5</span>
-                <h3>Si tu la quieres - David Bisbal</h3>
-            </div>
-            <div class="song-description">
-                No todo es tristeza, hay que ser positivo, algo que me enseñaste. Canción que me gustaría cantar junto a ti si es que se llega a dar...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/qjWmbq9AcK4" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/qjWmbq9AcK4" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 6. ¿Y Si Lo Intentamos? -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">6</span>
-                <h3>Sobre la marcha - Andres obregon, Kakalo</h3>
-            </div>
-            <div class="song-description">
-                Canción que te dedico más que nada ahora, y si lo intentamos...?
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/LwosD3_lR38" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/LwosD3_lR38" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 7. Otra Vida -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">7</span>
-                <h3>En otra vida - lasso, yami safdie</h3>
-            </div>
-            <div class="song-description">
-                Un poquito de la idea de "tal vez en otra vida" jajaja...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/A2aixdFINOQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/A2aixdFINOQ" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 8. Lo que siento por ti -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">8</span>
-                <h3>Pero te conoci - Reik </h3>
-            </div>
-            <div class="song-description">
-                Un poquito de lo que siento por ti...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/rcRX1ma5Zh4" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/rcRX1ma5Zh4" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 9. Una Oportunidad -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">9</span>
-                <h3>¿Que pasaria? - Alex Ponce</h3>
-            </div>
-            <div class="song-description">
-                ¿Qué pasaría si me dieras una oportunidad...?
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/gkWdxjD0wW8" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/gkWdxjD0wW8" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 10. Mi Persona Favorita -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">10</span>
-                <h3>Como ella ya no hay- Alex Ponce</h3>
-            </div>
-            <div class="song-description">
-                Si alguien más llegase a tu vida en caso nos alejemos, me gustaría que esa persona escuche esto...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/EdhY-o7Gpjc" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/EdhY-o7Gpjc" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 11. Rayando el Sol -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">11</span>
-                <h3>Abrazame- Angela Aguilar, Felipe Botello</h3>
-            </div>
-            <div class="song-description">
-                Canción de una cantante que me mostraste, y bueno, me hace pensar en ti.
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/4Y2bL6AcoKc" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/4Y2bL6AcoKc" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
-        </div>
-
-        <!-- 12. Dos -->
-        <div class="cancion-card">
-            <div class="card-header">
-                <span class="song-number">12</span>
-                <h3>Podemos ser dos - Camino a Belen</h3>
-            </div>
-            <div class="song-description">
-                Podríamos ser dos...
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/1gYnBb8ukGY" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <a href="https://youtu.be/1gYnBb8ukGY" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+    <!-- GRID DE CANCIONES (se carga dinámicamente) -->
+    <section class="canciones-grid" id="canciones-grid">
+        <div class="loader-container">
+            <div class="loader"></div>
         </div>
     </section>
 
-    <!-- ONDA SONORA DECORATIVA (footer) -->
+    <!-- ONDA SONORA DECORATIVA -->
     <div class="soundwave-footer">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
@@ -570,6 +445,64 @@
                 star.style.animationDelay = Math.random() * 5 + 's';
                 starsContainer.appendChild(star);
             }
+
+            // Cargar canciones desde el JSON
+            const grid = document.getElementById('canciones-grid');
+            
+            fetch('Scripts/canciones.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo de canciones');
+                    }
+                    return response.json();
+                })
+                .then(canciones => {
+                    // Limpiar el grid (quitar loader)
+                    grid.innerHTML = '';
+                    
+                    // Crear tarjetas con animación retardada
+                    canciones.forEach((cancion, index) => {
+                        const card = document.createElement('div');
+                        card.className = 'cancion-card';
+                        card.style.animationDelay = `${index * 0.1}s`;
+                        
+                        // Extraer ID de YouTube de la URL
+                        let videoId = '';
+                        if (cancion.url.includes('youtu.be/')) {
+                            videoId = cancion.url.split('youtu.be/')[1].split('?')[0];
+                        } else if (cancion.url.includes('youtube.com/embed/')) {
+                            videoId = cancion.url.split('embed/')[1].split('?')[0];
+                        } else if (cancion.url.includes('v=')) {
+                            videoId = cancion.url.split('v=')[1].split('&')[0];
+                        }
+                        
+                        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                        
+                        card.innerHTML = `
+                            <div class="card-header">
+                                <span class="song-number">${cancion.id}</span>
+                                <h3>${cancion.titulo} <span>${cancion.artista}</span></h3>
+                            </div>
+                            <div class="song-description">
+                                ${cancion.descripcion}
+                            </div>
+                            <div class="video-container">
+                                <iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <a href="${cancion.url}" target="_blank" class="youtube-btn">▶ Reproducir en YouTube</a>
+                        `;
+                        
+                        grid.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    grid.innerHTML = `
+                        <div class="error-message">
+                            ✨ No se pudieron cargar las canciones. Pero el universo sigue brillando para ti. ✨
+                        </div>
+                    `;
+                });
         })();
     </script>
 </body>
