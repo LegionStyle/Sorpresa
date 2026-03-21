@@ -236,11 +236,56 @@
             font-family: 'Indie Flower', cursive;
         }
 
+        .message-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 300px;
+            background: rgba(0,0,0,0.7);
+            color: #FFFACD;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 100;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.2em;
+            text-align: justify;
+            border: 1px solid rgba(255,215,0,0.5);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        @media (max-width: 1024px) {
+            #main-title { font-size: 2.8em; }
+            .message-container { width: 250px; font-size: 1.1em; }
+            .music-control { width: 40px; height: 40px; font-size: 20px; bottom: 20px; right: 20px; }
+            .back-btn { padding: 8px 14px; font-size: 0.9em; }
+            .love-card-text { font-size: 2em; }
+            .start-title { font-size: 3rem; }
+            .start-subtitle { font-size: 1.3rem; }
+            .tap-text { font-size: 1.1rem; padding: 10px 24px; }
+        }
+
         @media (max-width: 768px) {
             #main-title { font-size: 2.5rem; top: 20px; white-space: normal; width: 90%; }
             .love-card-text { font-size: 1.8em; }
             .flower-icon { font-size: 70px; }
             .start-title { font-size: 2.5rem; }
+            .message-container { width: 90%; right: 5%; left: 5%; top: 60px; font-size: 1em; padding: 12px; }
+            .music-control { width: 35px; height: 35px; font-size: 18px; bottom: 15px; right: 15px; }
+            .back-btn { padding: 6px 12px; font-size: 0.8em; top: 10px; left: 10px; }
+            .start-subtitle { font-size: 1.2rem; }
+            .tap-text { font-size: 1rem; padding: 8px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            #main-title { font-size: 2rem; top: 15px; }
+            .message-container { top: 50px; padding: 10px; font-size: 0.9em; }
+            .music-control { width: 30px; height: 30px; font-size: 16px; }
+            .back-btn { padding: 5px 10px; font-size: 0.7em; }
+            .love-card-text { font-size: 1.5em; }
+            .flower-icon { font-size: 60px; }
+            .start-title { font-size: 2rem; }
+            .start-subtitle { font-size: 1rem; }
+            .tap-text { font-size: 0.9rem; padding: 6px 16px; }
         }
     </style>
 </head>
@@ -259,6 +304,9 @@
     <!-- Contenido principal con la galaxia 3D -->
     <div class="main-content" id="mainContent">
         <a class="back-btn" href="dashboard.html">← Volver a inicio</a>
+        <div class="message-container">
+            Un dia como hoy hace 3 años en la noche, te di un pequeño ramo de flores amarillas y ahora te lo vuelvo a dar aunque de manera dijerente y este durara para siempre. Aunque me hubiera gustado darte uno en persona y real, pero no se pudo. Te preguntaras porque, pues estas flores simbolizan amor, alegria y nuevos comienzos....
+        </div>
         <h1 id="main-title">Feliz día de las <br>Flores Amarillas 🌻</h1>
         <canvas id="galaxy-canvas"></canvas>
         <div class="music-control" id="musicControl">🔊</div>
