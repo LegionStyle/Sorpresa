@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Verdades - Nuestro Universo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Variables - mismas pero simplificadas */
         :root {
@@ -85,6 +86,71 @@
         .menu li a:hover {
             background: var(--secondary-color);
             color: white;
+        }
+
+        /* Contenedor de notificaciones */
+        .notification-container {
+            position: relative;
+        }
+
+        /* Estilo para el icono de notificaciones */
+        .notification-icon {
+            font-size: 1.2rem;
+            position: relative;
+            cursor: pointer;
+            color: white;
+        }
+
+        .notification-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 8px;
+            height: 8px;
+            background: red;
+            border-radius: 50%;
+            display: block; /* Mostrar indicador de notificación */
+        }
+
+        /* Menú desplegable de notificaciones */
+        .notification-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 200;
+        }
+
+        .notification-dropdown.show {
+            display: block;
+        }
+
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+            color: var(--text-secondary);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .notification-message {
+            margin-top: 5px;
+            font-size: 0.95rem;
         }
 
         /* Hero Section */
@@ -384,6 +450,15 @@
             <li><a href="dashboard.html">Inicio</a></li>
             <li><a href="canciones.html">Canciones</a></li>          <!-- agregado -->
             <li><a href="calendario.html">Calendario</a></li>        <!-- agregado -->
+            <li class="notification-container">
+                <a href="#" class="notification-icon" title="Notificaciones" id="notificationIcon"><i class="fas fa-bell"></i></a>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-item">
+                        <div class="notification-date">21 de marzo</div>
+                        <div class="notification-message"><a href="notificaciones.html" style="color: inherit; text-decoration: none;">Día de las flores amarillas</a></div>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 
@@ -547,6 +622,23 @@
                     console.error('Error:', error);
                     feedbackDiv.innerHTML = '❌ Falló la conexión. ¿Probamos más tarde?';
                     feedbackDiv.style.color = '#ff6b8b';
+                }
+            });
+
+            // --- LÓGICA DEL DROPDOWN DE NOTIFICACIONES ---
+            const notificationIcon = document.getElementById('notificationIcon');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+
+            // Toggle dropdown al hacer clic en el icono
+            notificationIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                notificationDropdown.classList.toggle('show');
+            });
+
+            // Cerrar dropdown si se hace clic fuera
+            document.addEventListener('click', (e) => {
+                if (!notificationIcon.contains(e.target) && !notificationDropdown.contains(e.target)) {
+                    notificationDropdown.classList.remove('show');
                 }
             });
         })();
